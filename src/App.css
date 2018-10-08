@@ -1,0 +1,154 @@
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.App {
+  text-align: center;
+  background-color: rgba(36,46,66,0.4);
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  color: #242e42;
+}
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 692px;
+  height: 520px;
+  position: absolute;
+  left: 50%;
+  margin-left: -386px;
+  top: 50%;
+  margin-top: -260px;
+  padding: 0 40px;
+}
+.Header{
+  margin-top: 40px;
+  text-align: center; 
+}
+.Header H2{
+  margin-top: 0; 
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 28px; 
+}
+.Header p{
+  font-size:  12px;
+  line-height: 20px;
+  color: #5f708a;
+  margin: 0;
+}
+.Content {
+  background-color: #f9fbfd;
+  width: 100%;
+  height: 292px;
+  margin: 32px 0 20px 0;
+  border-radius: 4px; 
+  padding: 12px;
+}
+.form-control{
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #d8dee5;
+  padding: 8px 8px 8px 16px;
+  text-align: left;
+  margin-bottom: 12px; 
+}
+.form-control>.icon{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin-right: 12px; 
+}
+.form-control> input{
+  border: none;
+  list-style: none;
+  outline:none;
+  color: #242e42;
+  font-weight: bold;
+  width: 460px;
+}
+.form-control> input::-webkit-input-placeholder{
+  font-weight: normal;
+  color: #5f708a;
+}
+.form-control> button{
+  position: absolute;
+  background: #242e42;
+  padding: 6px 20px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: blod!important;
+  box-shadow: 0 8px 16px rgba(35,45,65, 0.1);
+  border-radius: 20px; 
+  right: 1px!important;
+  top: 1px;
+  outline:none;
+
+}
+.form-control> button:hover{
+  box-shadow: none;
+}
+.ListContainer{
+  height: 240px;
+  background: #FFF;
+  border: 1px solid #e3e9ef;
+  border-radius: 4px;
+  padding: 12px;
+  overflow-y: auto;
+}
+.ListContainer ul li{
+  display: block;
+  margin-bottom: 8px;  
+}
+.Listitem{
+  position: relative;
+  background: #f9fbfd;
+  border-radius: 2px;
+  text-align: left;
+  padding: 8px;
+}
+.Listitem img{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  border-radius: 20px;
+  border: 2px solid #fff; 
+}
+.Listitem .title{
+  display: inline-block;
+  margin-left:12px; 
+  
+}
+.Listitem .title h6{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.Listitem .title span{
+  display: block;
+  color: #79879c;
+  font-size: 12px;
+  line-height: 20px;
+}
+.Listitem button{
+  position: absolute;
+  background: #eff4f9;
+  padding: 6px 20px;
+  line-height: 20px;
+  color: #5f708a;
+  border: 1px solid #ccd3db;
+  border-radius: 20px;
+  font-weight: blod!important;
+  outline:none;
+  right: 8px;
+  top: 12px;
+}
