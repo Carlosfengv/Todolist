@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import FormContro from './form-control';
 import Item from './list-item';
-
-
+import moment from "moment";
 
 class Content extends Component{
     constructor(props){
@@ -38,9 +37,9 @@ class Content extends Component{
         }
     }
     Additem = ()=>{
-        const time = Date();
+        let statusPassTime = moment().format('YYYY-MM-DD HH:mm:ss');  
         const TotalList = [...this.state.list];
-        const item = { content: this.state.addValue,time: time };
+        const item = { content: this.state.addValue,time: statusPassTime };
         TotalList.push(item);
         this.setState({
             list: TotalList,
