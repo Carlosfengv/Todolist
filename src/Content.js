@@ -21,6 +21,20 @@ class Content extends Component{
             list: delitems
         })
     }
+    toogle = (item,index) =>{
+        const total = [...this.state.list];
+       /*  const Finished = !item.Finished; */
+
+/*         this.setState({
+            
+        }) */
+        let EditorItem = !item.Finished;
+        total[index].Finished = EditorItem;
+        this.setState({
+            list: total
+        })
+        console.log(total)
+    }
     GetValue = (e) =>{
         if(e.target.value.length===0){
             this.setState({
@@ -39,7 +53,7 @@ class Content extends Component{
     Additem = ()=>{
         let statusPassTime = moment().format('YYYY-MM-DD HH:mm:ss');  
         const TotalList = [...this.state.list];
-        const item = { content: this.state.addValue,time: statusPassTime };
+        const item = { content: this.state.addValue,time: statusPassTime ,Finished: false};
         TotalList.push(item);
         this.setState({
             list: TotalList,
@@ -50,15 +64,22 @@ class Content extends Component{
     }
     render(){
         return <div className="Content">
-            <FormContro isShow={this.state.isShow}  onClick={this.Additem} onChange ={this.GetValue} value={this.state.addValue}></FormContro>
+            <FormContro isShow={this.state.isShow}
+                        total={this.state.list.length}
+                        onClick={this.Additem}  
+                        onChange ={this.GetValue}
+                        value={this.state.addValue}>
+            </FormContro>
             <div className="ListContainer">
                 <ul>
                     { this.state.list.map((items,index)=>{
                         return <li key={index}>
                                  <Item 
+                                 isfinish = {items.Finished}
                                  content ={items.content}
                                  time={items.time}
                                  onClick={()=>this.delitem(index)}
+                                 onToggle={()=>this.toogle(items,index)}
                                  ></Item>
                         </li>
                     })}

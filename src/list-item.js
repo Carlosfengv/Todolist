@@ -5,8 +5,10 @@ const Item = (props) =>{
 
 
     return <div className="Listitem">
-                    <img src={require('./icon/touxiang.jpg')}></img>
-                    <div className="title">
+                    {props.isfinish? <span className="Finish" onClick={props.onToggle}></span> : <span onClick={props.onToggle} className="Unfinished"></span> }
+                    <div className={
+                        props.isfinish? "title finished" : "title"
+                    }>
                         <h6>{ props.content }</h6>
                         <span>{ props.time }</span>
                     </div>
