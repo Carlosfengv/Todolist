@@ -26,7 +26,7 @@ class FormControl extends Component{
     render(){
         return <div className="form">
                     <div className="form-filter">
-                       <span className="item active">待办<span className="num">1</span></span>
+                       <span className="item active">待办<span className="num">{this.props.unfinished}</span></span>
                        <span className="item">全部<span className="num">{this.props.total}</span></span>
                     </div>
                     <div className="form-control">

@@ -101,7 +101,6 @@ ul,li{
   box-shadow: none;
 }
 .form-filter{
-  flex: 1 0 90px;
   height: 38px;
   border-radius: 19px;
   border: solid 1px #d8dee5;

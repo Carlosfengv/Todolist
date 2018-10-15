@@ -7,6 +7,7 @@ class Content extends Component{
     constructor(props){
         super(props);
         this.state={
+            unfinished: 0,
             isShow: false,
             list:[],
             addValue: ""
@@ -17,23 +18,23 @@ class Content extends Component{
         const delitems = [...this.state.list];
         // splice(删除内容,删除长度)
         delitems.splice(item,1)
+        let Filte = delitems.filter(items => !items.Finished).length;
         this.setState({
-            list: delitems
+            list: delitems,
+            unfinished: Filte
         })
     }
     toogle = (item,index) =>{
-        const total = [...this.state.list];
-       /*  const Finished = !item.Finished; */
-
-/*         this.setState({
-            
-        }) */
+        const total = [...this.state.list]
         let EditorItem = !item.Finished;
         total[index].Finished = EditorItem;
+        this.updateUnfinished
+        let Filte = this.state.list.filter(items => !items.Finished).length
         this.setState({
-            list: total
+            list: total,
+            unfinished: Filte
         })
-        console.log(total)
+        /* console.log(Filte) */
     }
     GetValue = (e) =>{
         if(e.target.value.length===0){
@@ -55,17 +56,22 @@ class Content extends Component{
         const TotalList = [...this.state.list];
         const item = { content: this.state.addValue,time: statusPassTime ,Finished: false};
         TotalList.push(item);
+        let Filte = this.state.list.filter(items => !items.Finished).length + 1;
         this.setState({
             list: TotalList,
             isShow: false,
-            addValue: ""
-        })
+            addValue: "",
+            unfinished: Filte
+        });
+        //将添加的数组存储到 localstroage 中
+        localStorage.setItem("list",JSON.stringify(TotalList))
 
     }
     render(){
         return <div className="Content">
             <FormContro isShow={this.state.isShow}
                         total={this.state.list.length}
+                        unfinished={this.state.unfinished}
                         onClick={this.Additem}  
                         onChange ={this.GetValue}
                         value={this.state.addValue}>
