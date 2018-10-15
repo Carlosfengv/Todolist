@@ -26,8 +26,12 @@ class FormControl extends Component{
     render(){
         return <div className="form">
                     <div className="form-filter">
-                       <span className="item active">待办<span className="num">{this.props.unfinished}</span></span>
-                       <span className="item">全部<span className="num">{this.props.total}</span></span>
+                       {/*  {this.props.item.map((items,index)=>{
+                            return <span className="item">{items.name}<span className="num">{items.num}</span></span>
+                        })} */}
+                        <span onClick={this.props.onToggle} className={this.props.checked? "item active":"item"}>待办<span className="num">{this.props.unfinished}</span></span>
+                        <span onClick={this.props.onToggle}  className={this.props.checked? "item":"item active"}>全部<span className="num">{this.props.total}</span></span>
+                       
                     </div>
                     <div className="form-control">
                         <div className="icon"><img alt="mail" src={require('./icon/mail.svg')}></img></div>

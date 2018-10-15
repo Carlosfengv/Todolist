@@ -51,10 +51,11 @@ ul,li{
 }
 .form{
   text-align: left;
-  display: flex;
+  display: table;
+  margin-bottom: 12px;
 }
 .form-control{
-  flex: 1 0 90px;
+  display: table-cell;
   position: relative;
   background: #fff;
   border-radius: 20px;
@@ -101,7 +102,7 @@ ul,li{
   box-shadow: none;
 }
 .form-filter{
-  height: 38px;
+  display: table-cell;
   border-radius: 19px;
   border: solid 1px #d8dee5;
   background-color: #eff4f9;
@@ -206,4 +207,10 @@ ul,li{
   border-radius: 20px;
   border: 2px solid #e3e9ef;  
   background: #fff; 
+}
+.Nodate p{
+  font-size: 12px;
+    line-height: 20px;
+    color: #5f708a;
+    margin: 0;
 }
