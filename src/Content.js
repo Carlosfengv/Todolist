@@ -54,7 +54,8 @@ class Content extends Component{
     Additem = ()=>{
         let statusPassTime = moment().format('YYYY-MM-DD HH:mm:ss');  
         const TotalList = [...this.state.list];
-        const item = { "content": this.state.addValue,"time": statusPassTime ,"Finished": false};
+        const UUID = Math.random().toString().slice(2,17);
+        const item = { "content": this.state.addValue,"time": statusPassTime ,"Finished": false,"id":parseInt(UUID)};
         TotalList.push(item);
         let Filte = this.state.list.filter(items => !items.Finished).length + 1;
         this.setState({
@@ -78,7 +79,7 @@ class Content extends Component{
             unfinished: Filte
         })
     }
-    toogle = (item,index) =>{
+    toogle = (item) =>{
         /* const total = [...this.state.list]
         let EditorItem = !item.Finished;
         total[index].Finished = EditorItem;
@@ -90,15 +91,27 @@ class Content extends Component{
         }) */
 
         // localstorage
-
-        const LoadValue = [...this.state.list];
-        LoadValue[index].Finished = !item.Finished;
-        this.setState({
-            list: LoadValue,
-            unfinished: LoadValue.filter(items => !items.Finished).length
-        })
+        
+        const LoadValue = this._getLocalStorage('list');
+        const ids = item.id
+        const ID = LoadValue.findIndex(i =>{
+            return i.id === ids;
+        });
+        LoadValue[ID].Finished = !item.Finished;
+        if(this.state.checked===true){
+            const FilteValue = LoadValue.filter(items => !items.Finished);
+            this.setState({
+                list: FilteValue,
+                unfinished: LoadValue.filter(items => !items.Finished).length
+            })
+            console.log(FilteValue)
+        }else{
+            this.setState({
+                list: LoadValue,
+                unfinished: LoadValue.filter(items => !items.Finished).length
+            })
+        }
         this._setLocalStorage(LoadValue);
-        console.log(LoadValue)
         
     }
     tabMenu = () =>{
@@ -115,7 +128,6 @@ class Content extends Component{
                 checked: false
             })
         }
-        console.log(LoadValue)
         
     }
     render(){
@@ -132,15 +144,14 @@ class Content extends Component{
             <div className="ListContainer">
                 {this.state.list.length !==0? <ul>
                     { this.state.list.map((items,index)=>{
-                        return <li key={index}>
-                                 <Item 
+                        return  <Item
+                                 key = {items.id}
                                  isfinish = {items.Finished}
                                  content ={items.content}
                                  time={items.time}
                                  onClick={()=>this.delitem(index)}
-                                 onToggle={()=>this.toogle(items,index)}
+                                 onToggle={()=>this.toogle(items)}
                                  ></Item>
-                        </li>
                     })}
                 </ul>:<ul><div className="Nodate"><img src={require('./icon/undraw-empty-xct-9.svg')}></img><p>请添加待办事项</p></div></ul>}
             </div>

@@ -4,7 +4,8 @@ import React from 'react';
 const Item = (props) =>{
 
 
-    return <div className="Listitem">
+    return <li>
+                <div className="Listitem" id={props.id}>
                     {props.isfinish? <span className="Finish" onClick={props.onToggle}></span> : <span onClick={props.onToggle} className="Unfinished"></span> }
                     <div className={
                         props.isfinish? "title finished" : "title"
@@ -15,6 +16,7 @@ const Item = (props) =>{
                     <button onClick={props.onClick}>删除</button> 
                    
             </div>
+            </li>
 }
 
 export default Item;
