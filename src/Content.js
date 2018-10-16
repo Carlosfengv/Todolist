@@ -14,7 +14,12 @@ class Content extends Component{
             checked: true
             
         }
-
+        const Local = this._getLocalStorage('list')
+        if(Local===null){
+            this._setLocalStorage([])
+        }else{
+          this._setLocalStorage(Local)
+        }
     }
     _getLocalStorage =(value)=>{
         return JSON.parse(localStorage.getItem(value))
@@ -23,10 +28,6 @@ class Content extends Component{
         localStorage.setItem("list",JSON.stringify(value))
     }
     componentWillMount(){
-        /* const demo = {
-            content: "this.state.addValue",time: "statusPassTime" ,Finished: false
-        }
-        this._setLocalStorage("list",demo) */
         const LoadValue = this._getLocalStorage('list');
         let un = LoadValue.filter(items => !items.Finished)
         this.setState({
@@ -35,10 +36,25 @@ class Content extends Component{
         })
         console.log(LoadValue)
     }
+    GetValue = (e) =>{
+        if(e.target.value.length===0){
+            this.setState({
+                isShow: !this.state.isShow,
+                addValue: ""
+            })
+        }else{
+            this.setState(
+                this.setState({
+                    isShow: true,
+                    addValue: e.target.value
+                })
+            )
+        }
+    }
     Additem = ()=>{
         let statusPassTime = moment().format('YYYY-MM-DD HH:mm:ss');  
         const TotalList = [...this.state.list];
-        const item = { content: this.state.addValue,time: statusPassTime ,Finished: false};
+        const item = { "content": this.state.addValue,"time": statusPassTime ,"Finished": false};
         TotalList.push(item);
         let Filte = this.state.list.filter(items => !items.Finished).length + 1;
         this.setState({
@@ -76,46 +92,30 @@ class Content extends Component{
         // localstorage
 
         const LoadValue = [...this.state.list];
-        let EditorItem = !item.Finished;
-        LoadValue[index].Finished = EditorItem;
-        this._setLocalStorage(LoadValue);
+        LoadValue[index].Finished = !item.Finished;
         this.setState({
             list: LoadValue,
             unfinished: LoadValue.filter(items => !items.Finished).length
         })
-
+        this._setLocalStorage(LoadValue);
         console.log(LoadValue)
         
     }
-    GetValue = (e) =>{
-        if(e.target.value.length===0){
-            this.setState({
-                isShow: !this.state.isShow,
-                addValue: ""
-            })
-        }else{
-            this.setState(
-                this.setState({
-                    isShow: true,
-                    addValue: e.target.value
-                })
-            )
-        }
-    }
     tabMenu = () =>{
-        const LoadValue = this._getLocalStorage('list');
+        let LoadValue = this._getLocalStorage('list');
         if(this.state.checked===false){
-            const un = this.state.list.filter(items => !items.Finished);
+            const un = LoadValue.filter(items => !items.Finished);
             this.setState({
                 list: un,
-                checked: !this.state.checked
+                checked: true
             })
         }else{
             this.setState({
                 list: LoadValue,
-                checked: !this.state.checked
+                checked: false
             })
         }
+        console.log(LoadValue)
         
     }
     render(){
