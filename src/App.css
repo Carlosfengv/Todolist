@@ -3,7 +3,23 @@ ul,li{
   padding: 0;
   list-style: none;
 }
-
+.Nav{
+  background: #fff;
+}
+.Navgation li{
+  display: inline-block;
+}
+.Navgation li button{
+  padding: 8px 12px ;
+  line-height: 20px;
+  border-radius: 4px;
+  background: #fff;
+  border: none;
+  outline: none; 
+}
+.Navgation li button:hover{
+  background: #eff4f9;
+}
 .App {
   text-align: center;
   background-color: rgba(36,46,66,0.4);
