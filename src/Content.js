@@ -79,7 +79,7 @@ class Content extends Component{
             unfinished: Filte
         })
     }
-    toogle = (item) =>{
+    toogle = (items) =>{
         /* const total = [...this.state.list]
         let EditorItem = !item.Finished;
         total[index].Finished = EditorItem;
@@ -92,19 +92,22 @@ class Content extends Component{
 
         // localstorage
         const LoadValue = this._getLocalStorage('list');
-        const ids = item.id
+        const ids = items.id
         const ID = LoadValue.findIndex(i =>{
             return i.id === ids;
         });
-        LoadValue[ID].Finished = !item.Finished;
+        LoadValue[ID].Finished = !items.Finished;
         if(this.state.checked===true){
             const FilteValue = this.state.list;
-            FilteValue[ID].Finished = !item.Finished;
+            const oID = FilteValue.findIndex( i => {
+                return i.id === ids;
+            });
+            FilteValue[oID].Finished = !items.Finished;
             this.setState({
                 list: FilteValue,
                 unfinished: LoadValue.filter(items => !items.Finished).length
             })
-            console.log(FilteValue);
+            console.log(oID)
             
         }else{
             this.setState({
@@ -113,6 +116,7 @@ class Content extends Component{
             })
         }
         this._setLocalStorage(LoadValue);
+        console.log(LoadValue[ID]);
         
     }
     tabMenu = () =>{
@@ -121,12 +125,12 @@ class Content extends Component{
             const un = LoadValue.filter(items => !items.Finished);
             this.setState({
                 list: un,
-                checked: true
+                checked: !this.state.checked
             })
         }else{
             this.setState({
                 list: LoadValue,
-                checked: false
+                checked: !this.state.checked
             })
         }
         
