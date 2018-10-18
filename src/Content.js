@@ -34,7 +34,7 @@ class Content extends Component{
             list: un,
             unfinished: un.length
         })
-        console.log(LoadValue)
+        /* console.log(LoadValue) */
     }
     GetValue = (e) =>{
         if(e.target.value.length===0){
@@ -91,7 +91,6 @@ class Content extends Component{
         }) */
 
         // localstorage
-        
         const LoadValue = this._getLocalStorage('list');
         const ids = item.id
         const ID = LoadValue.findIndex(i =>{
@@ -99,12 +98,14 @@ class Content extends Component{
         });
         LoadValue[ID].Finished = !item.Finished;
         if(this.state.checked===true){
-            const FilteValue = LoadValue.filter(items => !items.Finished);
+            const FilteValue = this.state.list;
+            FilteValue[ID].Finished = !item.Finished;
             this.setState({
                 list: FilteValue,
                 unfinished: LoadValue.filter(items => !items.Finished).length
             })
-            console.log(FilteValue)
+            console.log(FilteValue);
+            
         }else{
             this.setState({
                 list: LoadValue,
