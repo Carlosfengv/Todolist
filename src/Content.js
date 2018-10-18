@@ -68,6 +68,8 @@ class Content extends Component{
         this._setLocalStorage(TotalList);
 
     }
+
+    
     delitem = (item) =>{
         const delitems = [...this.state.list];
         // splice(删除内容,删除长度)
@@ -133,7 +135,11 @@ class Content extends Component{
                 checked: !this.state.checked
             })
         }
-        
+    }
+    handleEnterDown = (e) => {
+        if(e.key === "Enter" & this.state.isShow === true){
+            return this.Additem(e)
+        }
     }
     render(){
         return <div className="Content">
@@ -141,7 +147,8 @@ class Content extends Component{
                         checked={this.state.checked}
                         total={this._getLocalStorage('list').length}
                         unfinished={this.state.unfinished}
-                        onClick={this.Additem}  
+                        onClick={this.Additem} 
+                        handleEnterDown={this.handleEnterDown}   
                         onChange ={this.GetValue}
                         onToggle = {this.tabMenu}
                         value={this.state.addValue}>

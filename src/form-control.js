@@ -23,6 +23,8 @@ class FormControl extends Component{
         }
     } */
 
+
+
     render(){
         return <div className="form">
                     <div className="form-filter">
@@ -35,7 +37,7 @@ class FormControl extends Component{
                     </div>
                     <div className="form-control">
                         <div className="icon"><img alt="mail" src={require('./icon/mail.svg')}></img></div>
-                        <input  onChange={this.props.onChange}  onBlur={this.props.onBlur} placeholder="请输入待办事项" defaultValue={this.props.defaultValue} value={this.props.value}></input>
+                        <input onKeyDown={this.props.handleEnterDown} onChange={this.props.onChange}  onBlur={this.props.onBlur} placeholder="请输入待办事项" defaultValue={this.props.defaultValue} value={this.props.value}></input>
                         {
                             this.props.isShow? <button onClick={this.props.onClick} >Add</button> :null
                         }
