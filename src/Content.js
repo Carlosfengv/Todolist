@@ -55,7 +55,7 @@ class Content extends Component{
         let statusPassTime = moment().format('YYYY-MM-DD HH:mm:ss');  
         const TotalList = [...this.state.list];
         const UUID = Math.random().toString().slice(2,17);
-        const item = { "content": this.state.addValue,"time": statusPassTime ,"Finished": false,"id":parseInt(UUID)};
+        const item = { "content": this.state.addValue,"time": statusPassTime ,"Finished": false,"id":parseInt(UUID,10)};
         TotalList.push(item);
         let Filte = this.state.list.filter(items => !items.Finished).length + 1;
         this.setState({
@@ -138,7 +138,7 @@ class Content extends Component{
     }
     handleEnterDown = (e) => {
         if(e.key === "Enter" & this.state.isShow === true){
-            return this.Additem(e)
+            return this.Additem()
         }
     }
     render(){
@@ -165,7 +165,7 @@ class Content extends Component{
                                  onToggle={()=>this.toogle(items)}
                                  ></Item>
                     })}
-                </ul>:<ul><div className="Nodate"><img src={require('./icon/undraw-empty-xct-9.svg')}></img><p>请添加待办事项</p></div></ul>}
+                </ul>:<ul><div className="Nodate"><img alt="none" src={require('./icon/undraw-empty-xct-9.svg')}></img><p>请添加待办事项</p></div></ul>}
             </div>
         </div>
     }
