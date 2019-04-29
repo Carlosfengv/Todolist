@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Todo from "./todo"
+import Todo from "./todo";
+import ColorTools from './ColorTools'
 
 const BasicExample = () => (
   <Router>
@@ -11,18 +12,11 @@ const BasicExample = () => (
             <li><Link to="/todo"><button type="button">TdoList</button></Link></li>
           </ul>
         </div>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={ColorTools} />
       <Route  path="/todo" component={Todo} />
     </div>
   </Router>
 );
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
-
 
 
 export default BasicExample;
