@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import ColorInput from "./ColorInput";
-import ColorContainer from "./ColorContainer";
 
 class ColorTools extends Component {
   render() {
