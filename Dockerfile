@@ -8,11 +8,9 @@ ENV PATH=$PATH:/node_modules/.bin
 RUN npm install
 RUN npm start
 
-WORKDIR /src
-ADD . /src
+WORKDIR /
+ADD . /
 
 EXPOSE 3000
-EXPOSE 35729
 
-ENTRYPOINT ["/bin/bash", "/app/run.sh"]
-CMD ["start"]
+RUN npm build
