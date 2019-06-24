@@ -1,4 +1,4 @@
-FROM node:lastest
+FROM node:latest
 
 ADD yarn.lock /yarn.lock
 ADD package.json /package.json
