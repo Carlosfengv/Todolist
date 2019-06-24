@@ -1,11 +1,12 @@
 FROM node:latest
 
-ADD yarn.lock /yarn.lock
+ADD package-lock.json /package-lock.json
 ADD package.json /package.json
 
 ENV NODE_PATH=/node_modules
 ENV PATH=$PATH:/node_modules/.bin
-RUN yarn
+RUN npm install
+RUN npm start
 
 WORKDIR /src
 ADD . /src
