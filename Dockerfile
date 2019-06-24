@@ -1,16 +1,18 @@
+
 FROM node:latest
 
-ADD package-lock.json /package-lock.json
+ADD yarn.lock /yarn.lock
 ADD package.json /package.json
 
 ENV NODE_PATH=/node_modules
 ENV PATH=$PATH:/node_modules/.bin
-RUN npm install
-RUN npm start
+RUN yarn
 
-WORKDIR /
-ADD . /
+WORKDIR /app
+ADD . /app
 
 EXPOSE 3000
+EXPOSE 35729
 
-RUN npm build
+ENTRYPOINT ["/bin/bash", "/app/run.sh"]
+CMD ["start"]
