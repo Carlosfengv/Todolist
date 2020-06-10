@@ -1,2 +1,7 @@
-FROM nginx:1.17-alpine
-COPY ./build /usr/share/nginx/html
+FROM node:12-alpine
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
+RUN npm install
+EXPOSE 3000
+CMD ["npm", "run", "start"]
